@@ -14,3 +14,5 @@ Parameterised for quick porting to additional boards
 | MachXO5T | Eval Board      | LFMXO5-100T |
 | MachXO3  | Dev Board       | LFMXO3-9400 |
 | MachXO2  | Break Out Board | LFMXO2-7000 |
+
+(Git Signing Enabled)
