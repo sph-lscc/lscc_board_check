@@ -49,7 +49,7 @@ module led_kitt #(
   // Prescaler generates 1Hz pulse to enable display counter
   always_ff @(posedge clk_i, negedge rstn_i) begin : prescale
     if (!rstn_i) prescaler <= 'b0;
-    else prescaler <= prescaler_tc ? 'd0 : prescaler + 'd1;
+    else prescaler <= prescaler_tc ? PsWidth'(0) : prescaler + PsWidth'(1);
   end : prescale
 
   assign prescaler_tc = (prescaler == SysFreq - 1);
