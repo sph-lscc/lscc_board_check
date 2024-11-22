@@ -5,7 +5,7 @@ if [ $(uname) = 'Darwin' ] ; then
   VERILATOR_ROOT=/opt/homebrew
   CORES=`sysctl -n hw.ncpu`
 else
-  VERILATOR_ROOT=/opt/verilator
+  VERILATOR_ROOT=/mnt/tools/verilator
   CORES=`nproc`
 fi
 
@@ -19,6 +19,6 @@ do
   echo "Board: $BRD"
   echo "-----------------"
 
-  $VERILATOR_ROOT/bin/verilator -threads $CORES --timing -f sim_$BRD.opt ;
+  $VERILATOR_ROOT/bin/verilator -threads $CORES -f sim_$BRD.opt ;
 
 done
