@@ -1,6 +1,6 @@
 # Device Setup
 ldc_set_vcc -bank 1 1.8
-ldc_set_sysconfig {CONFIGIO_VOLTAGE_BANK1=1.8 CONFIGIO_VOLTAGE_BANK2=3.3 BOOT_SEL=SINGLE MCCLK_FREQ=100.0 COMPRESS_CONFIG=ON}
+ldc_set_sysconfig {CONFIGIO_VOLTAGE_BANK1=1.8 CONFIGIO_VOLTAGE_BANK2=3.3 BOOT_SEL=SINGLE COMPRESS_CONFIG=ON MCCLK_FREQ=160.0 MASTER_SPI_PORT=XSPI}
 ldc_set_vcc -bank 2 3.3
 # Outputs
 ldc_set_location -site {R15} [get_ports {seg_display_o[7]}]
