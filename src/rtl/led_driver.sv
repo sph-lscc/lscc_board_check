@@ -1,4 +1,4 @@
-`include "lscc_defines.svh"
+`include "../../lib/svh/lscc_defines.svh"
 
 // Instantiate driver based on board
 module led_driver #( string BOARD = "" )
