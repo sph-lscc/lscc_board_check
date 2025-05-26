@@ -16,7 +16,7 @@ module led_kitt #(
 
   // Local Parameters
 
-  localparam bit [13:0][7:0] LEDDecoder = {
+  localparam bit [7:0] LEDDecoder [14] = {
     8'b00000010,
     8'b00000100,
     8'b00001000,
