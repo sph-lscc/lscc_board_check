@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"name": "LSCC Board Check",
+			"file_exclude_name": ["._*"]
+		}
+	]
+}
