@@ -33,7 +33,7 @@ module led_kitt #(
     8'b00000001
   };
 
-  localparam int SysFreq = CLK_IN_MHZ * 1000 * 1000 / 14;
+  localparam int SysFreq = CLK_IN_MHZ * 1000 * 1000 / 7;
   localparam int PsWidth = $clog2(SysFreq);
 
   // Signal Declarations
