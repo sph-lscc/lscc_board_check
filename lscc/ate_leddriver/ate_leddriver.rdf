@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RadiantProject version="4.2" radiant="2025.1.b.49.0" title="ate_leddriver" device="LAV-AT-E70ES1-1LFG1156C" performance_grade="1" family_int="ap6a00b" device_int="ap6a400bee" package_int="LFG1156" operation_int="COM" speed_int="1" default_implementation="impl_1">
+<RadiantProject version="4.2" radiant="2025.1.0.39.0" title="ate_leddriver" device="LAV-AT-E70ES1-1LFG1156C" performance_grade="1" family_int="ap6a00b" device_int="ap6a400bee" package_int="LFG1156" operation_int="COM" speed_int="1" default_implementation="impl_1">
     <Options/>
     <Implementation title="impl_1" dir="impl_1" description="impl_1" synthesis="synplify" default_strategy="Strategy1">
-        <Options HDL_PARAM="BOARD=&quot;ATE_EVAL&quot;" VerilogStandard="System Verilog" def_top="led_driver">
+        <Options HDL_PARAM="BOARD=&quot;ATE_EVAL&quot;" VerilogStandard="System Verilog" def_top="led_driver" hdl_sort="off">
             <Option name="include path" value="../../lib/svh"/>
+            <Option name="top" value="led_driver"/>
         </Options>
+        <Source name="../../lib/rtl/lscc_pkg.sv" type="Verilog" type_short="Verilog">
+            <Options VerilogStandard="System Verilog"/>
+        </Source>
         <Source name="../../src/rtl/led_driver.sv" type="Verilog" type_short="Verilog">
             <Options VerilogStandard="System Verilog" top_module="led_driver"/>
         </Source>
