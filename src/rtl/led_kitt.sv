@@ -1,46 +1,30 @@
 //
 // LED flash sequence modelled on KITT car
 //
-// One full forward + reverse sweep per second
+// One full forward + reverse sweep per 2 seconds
 //
 `include "lscc_defines.svh"
 
 module led_kitt #(
     int CLK_IN_MHZ   = 125,
-    bit LED_POLARITY = 1'b0
+    bit LED_POLARITY = 1'b0,
+    int NUMLEDS      = 8    //Minimum = 3, else pattern indiscernable
 ) (
-    input              clk_i,
-    input              rstn_i,
-    output logic [7:0] led_display_o
+    input                       clk_i,
+    input                       rstn_i,
+    output logic [NUMLEDS-1:0]  led_display_o
 );
 
-  // Local Parameters
-
-  localparam bit [7:0] LEDDecoder [14] = {
-    8'b00000010,
-    8'b00000100,
-    8'b00001000,
-    8'b00010000,
-    8'b00100000,
-    8'b01000000,
-    8'b10000000,
-    8'b01000000,
-    8'b00100000,
-    8'b00010000,
-    8'b00001000,
-    8'b00000100,
-    8'b00000010,
-    8'b00000001
-  };
-
-  localparam int SysFreq = CLK_IN_MHZ * 1000 * 1000 / 7;
-  localparam int PsWidth = $clog2(SysFreq);
+  localparam int SeqLength = 2 * (NUMLEDS - 1);
+  localparam int SysFreq   = CLK_IN_MHZ * 2 * 1000 * 1000 / SeqLength;
+  localparam int PsWidth   = $clog2(SysFreq);
 
   // Signal Declarations
 
-  logic [        3:0] led_counter;
   logic [PsWidth-1:0] prescaler;
   logic               prescaler_tc;
+  logic [NUMLEDS-1:0] seq_up;
+  logic [NUMLEDS-1:0] seq_dn;
 
   // Module Behaviour
 
@@ -62,16 +46,22 @@ module led_kitt #(
 
 `endif
 
-  // Display Decoder - Increment once per prescaler pulse to value 13; decode value
-  always_ff @(posedge clk_i, negedge rstn_i) begin : dsply_dcdr
+  // Display Sequencer - Increment sequence once per prescaler pulse;
+  always_ff @(posedge clk_i, negedge rstn_i) begin : dsply_seq
     if (!rstn_i) begin
-      led_counter   <= 'b0;
-      led_display_o <= 'b0;
+      seq_up <= 'b1;
+      seq_dn <= 'b0;
     end
     else if (prescaler_tc) begin
-      led_counter   <= led_counter > 4'hC ? 4'h0 : led_counter + 4'h1;
-      led_display_o <= LED_POLARITY ? LEDDecoder[led_counter] : ~LEDDecoder[led_counter];
+      seq_up <= {1'b0,              seq_up[NUMLEDS-3:0], seq_dn[1]};
+      seq_dn <= {seq_up[NUMLEDS-2], seq_dn[NUMLEDS-1:2], 1'b0};
     end
-  end : dsply_dcdr
+  end : dsply_seq
+
+  // Decode output
+  always_comb begin : dsply_dcd
+    for (int i=0; i < NUMLEDS; i++)
+      led_display_o[i] = LED_POLARITY ~^ (seq_up[i] | seq_dn[i]);
+  end : dsply_dcd
 
 endmodule
