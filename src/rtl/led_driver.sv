@@ -1,13 +1,16 @@
 `include "lscc_defines.svh"
 
 // Instantiate driver based on board
-module led_driver #( string BOARD = "" )
-(
-  input              clk_i,
-  input              rstn_i,
-  output logic [7:0] seg_display_o,
-  output logic [7:0] led_display_o,
-  output logic [2:0] seg_sel_o
+module led_driver
+  #(
+    string BOARD = "",
+    int NUMLEDS  = 8
+  )(
+    input                      clk_i,
+    input                      rstn_i,
+    output logic [NUMLEDS-1:0] led_display_o,
+    output logic [7:0]         seg_display_o,
+    output logic [2:0]         seg_sel_o
 );
 
   logic       rst_n;  //System Reset
@@ -55,7 +58,7 @@ module led_driver #( string BOARD = "" )
 
         led_kitt # (
           .CLK_IN_MHZ(12),
-          .LED_POLARITY(1'b1)
+          .LED_POLARITY(1'b0)
         ) led_kitt_inst (
           .clk_i,
           .rstn_i(rst_n),
@@ -140,6 +143,31 @@ module led_driver #( string BOARD = "" )
         assign seg_sel_o = 3'b111;
 
       end : xo3_devbrd
+
+      // MachXO3D PFR Board
+      "XO3D_PFRBRD": begin : xo3d_pfrbrd
+        led_kitt #(
+            .CLK_IN_MHZ  (25),
+            .LED_POLARITY(1'b0),
+            .NUMLEDS     (NUMLEDS)
+        ) led_kitt_inst (
+            .clk_i,
+            .rstn_i(rst_n),
+            .led_display_o
+        );
+
+        svn_seg_cntr # (
+          .CLK_IN_MHZ(25),
+          .LED_POLARITY(1'b0)
+        ) svn_seg_inst (
+          .clk_i,
+          .rstn_i(rst_n),
+          .seg_display_o,
+          .seg_sel_o
+        );
+
+      end : xo3d_pfrbrd
+
 
       // MachXO2 Break Out Board
       "XO2_BRKOUTBRD": begin : xo2_brkoutbrd

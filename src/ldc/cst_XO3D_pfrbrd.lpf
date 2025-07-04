@@ -1,0 +1,28 @@
+BLOCK RESETPATHS ;
+BLOCK ASYNCPATHS ;
+LOCATE COMP "clk_i" SITE "M22" ;
+#LOCATE COMP "polarity_i" SITE "H5" ;
+LOCATE COMP "rstn_i" SITE "D3" ;
+FREQUENCY PORT "clk_i" 25.000000 MHz ;
+LOCATE COMP "led_display_o[0]" SITE "R18" ;
+LOCATE COMP "led_display_o[1]" SITE "R17" ;
+LOCATE COMP "led_display_o[2]" SITE "R16" ;
+LOCATE COMP "led_display_o[3]" SITE "T20" ;
+LOCATE COMP "led_display_o[4]" SITE "T19" ;
+LOCATE COMP "led_display_o[5]" SITE "T18" ;
+LOCATE COMP "led_display_o[6]" SITE "T17" ;
+LOCATE COMP "led_display_o[7]" SITE "U20" ;
+LOCATE COMP "led_display_o[8]" SITE "Y22" ;
+LOCATE COMP "led_display_o[9]" SITE "W21" ;
+
+LOCATE COMP "seg_display_o[7]" SITE "J17" ;
+LOCATE COMP "seg_display_o[6]" SITE "J18" ;
+LOCATE COMP "seg_display_o[5]" SITE "J19" ;
+LOCATE COMP "seg_display_o[4]" SITE "J21" ;
+LOCATE COMP "seg_display_o[3]" SITE "J22" ;
+LOCATE COMP "seg_display_o[2]" SITE "J20" ;
+LOCATE COMP "seg_display_o[1]" SITE "K20" ;
+LOCATE COMP "seg_display_o[0]" SITE "K19" ;
+
+
+CLOCK_TO_OUT ALLPORTS 12.500000 ns CLKPORT "clk_i" ;
