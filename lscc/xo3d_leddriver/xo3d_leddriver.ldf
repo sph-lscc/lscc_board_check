@@ -2,7 +2,7 @@
 <BaliProject version="3.2" title="xo3d_leddriver" device="LCMXO3D-9400HC-6BG484C" default_implementation="impl1">
     <Options/>
     <Implementation title="impl1" dir="impl1" description="impl1" synthesis="synplify" default_strategy="Strategy1">
-        <Options HDL_PARAM="BOARD=&quot;XO3D_PFRBRD&quot;" VerilogStandard="System Verilog" def_top="led_driver">
+        <Options HDL_PARAM="BOARD=&quot;XO3D_PFRBRD&quot;; NUMLEDS=10" VerilogStandard="System Verilog" def_top="led_driver">
             <Option name="include path" value="../../lib/svh"/>
         </Options>
         <Source name="../../lib/rtl/lscc_pkg.sv" type="Verilog" type_short="Verilog">
