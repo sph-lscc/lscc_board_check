@@ -23,7 +23,7 @@ module svn_seg_cntr #(
   localparam u_int  SelWidth    = $clog2(SelDepth);
 
   // 7 Segment display decoder (DsplyDepth x 8 ROM)
-  localparam bit [7:0] Seg7Dsply [DsplyDepth] = {
+  localparam u_byte Seg7Dsply [DsplyDepth] = {
     8'b10111111, //0.
     8'b00000110, //1
     8'b01011011, //2
@@ -43,7 +43,7 @@ module svn_seg_cntr #(
  };
 
   // 7 Segment Selector - cycle segments in arbitrary pattern
-  localparam bit [2:0] Seg7Sel [SelDepth] = {
+  localparam logic [2:0] Seg7Sel [SelDepth] = {
     3'b100,
     3'b010,
     3'b001,
