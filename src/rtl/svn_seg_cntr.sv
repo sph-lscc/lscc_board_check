@@ -1,4 +1,4 @@
-`include "lscc_defines.svh"
+`include "../../lib/svh/lscc_defines.svh"
 
 import lscc_pkg::*;
 

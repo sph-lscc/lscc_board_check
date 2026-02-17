@@ -1,0 +1,26 @@
+# Device Setup
+ldc_set_attribute {FORMAT=HEX CODE=DEADBEEF}
+# Outputs
+ldc_set_location -site {F9} [get_ports {seg_display_o[7]}]
+ldc_set_location -site {E9} [get_ports {seg_display_o[6]}]
+ldc_set_location -site {E10} [get_ports {seg_display_o[5]}]
+ldc_set_location -site {E12} [get_ports {seg_display_o[4]}]
+ldc_set_location -site {G11} [get_ports {seg_display_o[3]}]
+ldc_set_location -site {G12} [get_ports {seg_display_o[2]}]
+ldc_set_location -site {G14} [get_ports {seg_display_o[1]}]
+ldc_set_location -site {G16} [get_ports {seg_display_o[0]}]
+#ldc_set_location -site {AE26} [get_ports {seg_sel_o[2]}]
+#ldc_set_location -site {W22} [get_ports {seg_sel_o[1]}]
+#ldc_set_location -site {AC21} [get_ports {seg_sel_o[0]}]
+ldc_set_location -site {J15} [get_ports {led_display_o[7]}]
+ldc_set_location -site {H12} [get_ports {led_display_o[6]}]
+ldc_set_location -site {H14} [get_ports {led_display_o[5]}]
+ldc_set_location -site {H15} [get_ports {led_display_o[4]}]
+ldc_set_location -site {B2} [get_ports {led_display_o[3]}]
+ldc_set_location -site {H16} [get_ports {led_display_o[2]}]
+ldc_set_location -site {A2} [get_ports {led_display_o[1]}]
+ldc_set_location -site {B3} [get_ports {led_display_o[0]}]
+# Inputs
+ldc_set_location -site {H13} [get_ports clk_i]
+ldc_set_location -site {G4} [get_ports rstn_i]
+

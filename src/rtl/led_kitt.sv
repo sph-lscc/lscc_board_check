@@ -3,7 +3,7 @@
 //
 // One full forward + reverse sweep per 2 seconds
 //
-`include "lscc_defines.svh"
+`include "../../lib/svh/lscc_defines.svh"
 
 module led_kitt #(
     int CLK_IN_MHZ   = 125,
@@ -16,13 +16,13 @@ module led_kitt #(
 );
 
   localparam int SeqLength = 2 * (NUMLEDS - 1);
-  localparam int SysFreq   = CLK_IN_MHZ * 2 * 1000 * 1000 / SeqLength;
+  localparam int SysFreq   = CLK_IN_MHZ * 1000 * 1000 / SeqLength;
   localparam int PsWidth   = $clog2(SysFreq);
 
   // Signal Declarations
 
   logic [PsWidth-1:0] prescaler;
-  logic               prescaler_tc;
+  logic               prescaler_tc /* synthesis syn_keep=1 */; 
   logic [NUMLEDS-1:0] seq_up;
   logic [NUMLEDS-1:0] seq_dn;
 
@@ -33,7 +33,7 @@ module led_kitt #(
   // Prescaler generates 1Hz pulse to enable display counter
   always_ff @(posedge clk_i, negedge rstn_i) begin : prescale
     if (!rstn_i) prescaler <= 'b0;
-    else prescaler <= prescaler_tc ? PsWidth'(0) : prescaler + PsWidth'(1);
+    else prescaler <= prescaler_tc ? 'b0 : prescaler + 1'b1;
   end : prescale
 
   assign prescaler_tc = (prescaler == SysFreq - 1);
@@ -49,19 +49,29 @@ module led_kitt #(
   // Display Sequencer - Increment sequence once per prescaler pulse;
   always_ff @(posedge clk_i, negedge rstn_i) begin : dsply_seq
     if (!rstn_i) begin
+
       seq_up <= 'b1;
       seq_dn <= 'b0;
+
+      for (int i=0; i < NUMLEDS; i++)
+        led_display_o[i] <= LED_POLARITY;
+
     end
     else if (prescaler_tc) begin
+
       seq_up <= {1'b0,              seq_up[NUMLEDS-3:0], seq_dn[1]};
       seq_dn <= {seq_up[NUMLEDS-2], seq_dn[NUMLEDS-1:2], 1'b0};
+
+      for (int i=0; i < NUMLEDS; i++)
+        led_display_o[i] <= LED_POLARITY ~^ (seq_up[i] | seq_dn[i]);
+
     end
   end : dsply_seq
 
   // Decode output
-  always_comb begin : dsply_dcd
-    for (int i=0; i < NUMLEDS; i++)
-      led_display_o[i] = LED_POLARITY ~^ (seq_up[i] | seq_dn[i]);
-  end : dsply_dcd
+  //always_comb begin : dsply_dcd
+  //  for (int i=0; i < NUMLEDS; i++)
+  //    led_display_o[i] = LED_POLARITY ~^ (seq_up[i] | seq_dn[i]);
+  //end : dsply_dcd
 
 endmodule
