@@ -87,7 +87,7 @@ module led_driver
           .seg_sel_o
         );
       end : cpnx_versa
-      
+
       // CNX Versa Board
       "CNX_VERSA": begin : cnx_versa
         led_kitt # (
@@ -148,6 +148,29 @@ module led_driver
         assign seg_sel_o = 3'b111;
 
       end : xo5t_eval
+
+      // MachXO4 Development Board
+      "XO4_DEVBRD": begin : xo4_devbrd
+        led_kitt #(
+            .CLK_IN_MHZ  (12),  // Sourced from FTDI chip
+            .LED_POLARITY(1'b1)
+        ) led_kitt_inst (
+            .clk_i,
+            .rstn_i(rst_n),
+            .led_display_o
+        );
+
+        svn_seg_cntr # (
+          .CLK_IN_MHZ(12),      // Sourced from FTDI chip
+          .LED_POLARITY(1'b0)
+        ) svn_seg_inst (
+          .clk_i,
+          .rstn_i(rst_n),
+          .seg_display_o,
+          .seg_sel_o
+        );
+
+      end : xo4_devbrd
 
       // MachXO3 Development Board
       "XO3_DEVBRD": begin : xo3_devbrd
