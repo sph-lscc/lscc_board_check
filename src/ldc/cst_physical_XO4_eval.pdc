@@ -1,0 +1,25 @@
+# Timing
+create_clock -name {clk_i} -period 83.3333333333333 [get_ports clk_i]
+
+# Inputs
+ldc_set_location -site {B10} [get_ports clk_i]
+ldc_set_location -site {D3} [get_ports rstn_i]
+
+# Outputs
+ldc_set_location -site {F4} [get_ports {led_display_o[0]}]
+ldc_set_location -site {G4} [get_ports {led_display_o[1]}]
+ldc_set_location -site {G3} [get_ports {led_display_o[2]}]
+ldc_set_location -site {G1} [get_ports {led_display_o[3]}]
+ldc_set_location -site {H2} [get_ports {led_display_o[4]}]
+ldc_set_location -site {H1} [get_ports {led_display_o[5]}]
+ldc_set_location -site {J2} [get_ports {led_display_o[6]}]
+ldc_set_location -site {J1} [get_ports {led_display_o[7]}]
+
+ldc_set_location -site {G2} [get_ports {seg_display_o[0]}]
+ldc_set_location -site {D1} [get_ports {seg_display_o[1]}]
+ldc_set_location -site {C1} [get_ports {seg_display_o[2]}]
+ldc_set_location -site {D2} [get_ports {seg_display_o[3]}]
+ldc_set_location -site {E2} [get_ports {seg_display_o[4]}]
+ldc_set_location -site {E3} [get_ports {seg_display_o[5]}]
+ldc_set_location -site {E1} [get_ports {seg_display_o[6]}]
+ldc_set_location -site {F1} [get_ports {seg_display_o[7]}]
