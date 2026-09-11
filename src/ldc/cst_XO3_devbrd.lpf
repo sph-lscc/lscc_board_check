@@ -13,3 +13,4 @@ LOCATE COMP "led_display_o[5]" SITE "E1" ;
 LOCATE COMP "led_display_o[6]" SITE "E3" ;
 LOCATE COMP "led_display_o[7]" SITE "F1" ;
 CLOCK_TO_OUT ALLPORTS 15.000000 ns CLKPORT "clk_i" ;
+SYSCONFIG JTAG_PORT=DISABLE ;
