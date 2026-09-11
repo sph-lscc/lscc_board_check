@@ -1,0 +1,36 @@
+<Tokenset>
+    <Token name="svn_seg" type="user" width="7">
+        <entry key="H_0" value="b'0111111"/>
+        <entry key="H_1" value="b'0000110"/>
+        <entry key="H_2" value="b'1011011"/>
+        <entry key="H_3" value="b'1001111"/>
+        <entry key="H_4" value="b'1100110"/>
+        <entry key="H_5" value="b'1101101"/>
+        <entry key="H_6" value="b'1111101"/>
+        <entry key="H_7" value="b'0000110"/>
+        <entry key="H_8" value="b'1111111"/>
+        <entry key="H_9" value="b'1101111"/>
+        <entry key="H_A" value="b'1110111"/>
+        <entry key="H_B" value="b'1111100"/>
+        <entry key="H_C" value="b'0111001"/>
+        <entry key="H_D" value="b'1011110"/>
+        <entry key="H_E" value="b'1111001"/>
+        <entry key="H_F" value="b'1110001"/>
+        <entry key="h_0" value="b'1000000"/>
+        <entry key="h_1" value="b'1111001"/>
+        <entry key="h_2" value="b'0100100"/>
+        <entry key="h_3" value="b'0110000"/>
+        <entry key="h_4" value="b'0011001"/>
+        <entry key="h_5" value="b'0010010"/>
+        <entry key="h_6" value="b'0000010"/>
+        <entry key="h_7" value="b'1111000"/>
+        <entry key="h_8" value="b'0000000"/>
+        <entry key="h_9" value="b'0010000"/>
+        <entry key="h_a" value="b'0001000"/>
+        <entry key="h_b" value="b'0000011"/>
+        <entry key="h_c" value="b'1000110"/>
+        <entry key="h_d" value="b'0100001"/>
+        <entry key="h_e" value="b'0000110"/>
+        <entry key="h_f" value="b'0001110"/>
+    </Token>
+</Tokenset>
