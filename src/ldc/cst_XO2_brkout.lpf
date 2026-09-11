@@ -1,6 +1,7 @@
+rvl_alias "osc_clk" "osc_clk";
 BLOCK RESETPATHS ;
 BLOCK ASYNCPATHS ;
-FREQUENCY NET "xo2_brkoutbrd.osc_clk" 2.080000 MHz ;
+FREQUENCY NET "xo2_brkoutbrd.osc_clk" 3 MHz ;
 BANK 0 VCCIO 3.3 V;
 BANK 1 VCCIO 3.3 V;
 BANK 2 VCCIO 3.3 V;
@@ -19,3 +20,4 @@ LOCATE COMP "led_display_o[5]" SITE "105" ;
 LOCATE COMP "led_display_o[6]" SITE "106" ;
 LOCATE COMP "led_display_o[7]" SITE "107" ;
 SYSCONFIG CONFIGURATION=CFG SDM_PORT=PROGRAMN_DONE_INITN ;
+BLOCK JTAGPATHS;
